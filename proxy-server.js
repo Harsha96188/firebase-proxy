@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-const app = express();
+const app = express(); 
 
 const FIREBASE_URL = "https://server-shield-d28ad-default-rtdb.asia-southeast1.firebasedatabase.app";
 const FIREBASE_SECRET = "wRULCkZW4jRuzd8KWTlFYkfc5DeixJKUhLuK0PK4"; 
