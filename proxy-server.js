@@ -1,9 +1,12 @@
+require("dotenv").config(); // 🔥 Load environment variables
+
 const express = require("express");
 const axios = require("axios");
 const app = express();
 
-const FIREBASE_URL = "https://server-shield-d28ad-default-rtdb.asia-southeast1.firebasedatabase.app";
-const FIREBASE_SECRET = "wRULCkZW4jRuzd8KWTlFYkfc5DeixJKUhLuK0PK4";
+const FIREBASE_URL = process.env.FIREBASE_URL;
+const FIREBASE_SECRET = process.env.FIREBASE_SECRET;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 
@@ -12,7 +15,7 @@ app.get("/", (req, res) => {
   res.status(200).send("✅ Proxy Server is live and responding.");
 });
 
-// ✅ Data route
+// ✅ Data forwarding route
 app.post("/send-data", async (req, res) => {
   try {
     const data = req.body;
@@ -30,14 +33,13 @@ app.post("/send-data", async (req, res) => {
   }
 });
 
-// ✅ Start server only if PORT is defined
-const PORT = process.env.PORT;
+// ✅ Handle missing PORT
 if (!PORT) {
   console.error("❌ Railway PORT not defined. Exiting...");
   process.exit(1);
 }
 
-// ✅ Handle unexpected rejections (important!)
+// ✅ Global error handler for unhandled promise rejections
 process.on("unhandledRejection", (err) => {
   console.error("🔥 Unhandled Rejection:", err);
 });
