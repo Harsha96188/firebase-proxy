@@ -1,4 +1,4 @@
-require("dotenv").config(); // 🔥 Load environment variables
+require("dotenv").config(); 
 
 const express = require("express");
 const axios = require("axios");
@@ -10,12 +10,10 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
-// ✅ Health check route
 app.get("/", (req, res) => {
   res.status(200).send("✅ Proxy Server is live and responding.");
 });
 
-// ✅ Data forwarding route
 app.post("/send-data", async (req, res) => {
   try {
     const data = req.body;
@@ -33,13 +31,11 @@ app.post("/send-data", async (req, res) => {
   }
 });
 
-// ✅ Handle missing PORT
 if (!PORT) {
   console.error("❌ Railway PORT not defined. Exiting...");
   process.exit(1);
 }
 
-// ✅ Global error handler for unhandled promise rejections
 process.on("unhandledRejection", (err) => {
   console.error("🔥 Unhandled Rejection:", err);
 });
