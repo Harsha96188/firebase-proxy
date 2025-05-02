@@ -1,6 +1,6 @@
 {
   "name": "firebase-proxy",
-  "version": "1.0.0",
+  "version": "1.0.0", 
   "main": "proxy-server.js",
   "scripts": {
     "start": "node proxy-server.js",  
@@ -13,6 +13,8 @@
     "axios": "^1.9.0",
     "express": "^5.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+  },
   "description": ""
 }
